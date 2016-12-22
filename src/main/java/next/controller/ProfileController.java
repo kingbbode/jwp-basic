@@ -1,6 +1,7 @@
 package next.controller;
 
 import core.db.DataBase;
+import next.enums.HttpRequestType;
 import next.model.User;
 
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/users/profile")
-public class ProfileController extends Controller {
+public class ProfileController extends AbstractController {
     private static final long serialVersionUID = 1L;
+
+    public ProfileController(HttpRequestType[] type) {
+        super(type);
+    }
 
     @Override
     protected String doGet(HttpServletRequest req, HttpServletResponse resp) {

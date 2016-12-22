@@ -1,13 +1,18 @@
 package next.controller;
 
 import core.db.DataBase;
+import next.enums.HttpRequestType;
 import next.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoginController extends Controller {
+public class LoginController extends AbstractController {
+
+    public LoginController(HttpRequestType[] type) {
+        super(type);
+    }
 
     @Override
     protected String doPost(HttpServletRequest req, HttpServletResponse resp){
