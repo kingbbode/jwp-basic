@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by YG-MAC on 2016. 12. 26..
  */
-public class JdbcTemplate extends AbstractJdbcTemplate{
+public class JdbcTemplate extends AbstractJdbcTemplate {
     private Connection con;
 
     public JdbcTemplate() {
@@ -36,23 +36,11 @@ public class JdbcTemplate extends AbstractJdbcTemplate{
 
     @Override
     public <T> T queryForObject(String sql, ResultTransFormer<T> resultTransFormer, Object... args) throws SQLException {
-        PreparedStatement pstmt = null;
-        try {
-            pstmt = createPreparedStatement(con.prepareStatement(sql), args);
-            ResultSet rs = pstmt.executeQuery();
-            if (!rs.next()) {
-                return null;
-            }
-            return resultTransFormer.execute(rs);
-        } finally {
-            if (pstmt != null) {
-                pstmt.close();
-            }
-
-            if (con != null) {
-                con.close();
-            }
+        List<T> list = queryForList(sql, resultTransFormer, args);
+        if (list.size() == 0) {
+            return null;
         }
+        return list.get(0);
     }
 
     @Override
