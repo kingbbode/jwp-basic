@@ -1,11 +1,11 @@
-package next.controller.qna;
+package next.legacy.controller.qna;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import core.mvc.AbstractController;
 import core.mvc.ModelAndView;
 import next.dao.QuestionDao;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class ApiListQuestionController extends AbstractController {
     private QuestionDao questionDao = QuestionDao.getInstance();

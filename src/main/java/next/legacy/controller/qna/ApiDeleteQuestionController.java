@@ -1,14 +1,14 @@
-package next.controller.qna;
+package next.legacy.controller.qna;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import core.mvc.AbstractController;
 import core.mvc.ModelAndView;
 import next.CannotDeleteException;
-import next.controller.UserSessionUtils;
+import next.legacy.controller.UserSessionUtils;
 import next.model.Result;
 import next.service.QnaService;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class ApiDeleteQuestionController extends AbstractController {
     private QnaService qnaService = QnaService.getInstance();

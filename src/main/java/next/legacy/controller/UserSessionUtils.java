@@ -1,4 +1,4 @@
-package next.controller;
+package next.legacy.controller;
 
 import next.model.User;
 

@@ -1,30 +1,31 @@
-package next.controller.qna;
-
-import core.mvc.AbstractController;
-import core.mvc.ModelAndView;
-import next.CannotDeleteException;
-import next.controller.UserSessionUtils;
-import next.model.Result;
-import next.service.QnaService;
+package next.legacy.controller.qna;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ApiDeleteQuestionController extends AbstractController {
+import core.mvc.AbstractController;
+import core.mvc.ModelAndView;
+import next.CannotDeleteException;
+import next.legacy.controller.UserSessionUtils;
+import next.service.QnaService;
+
+public class DeleteQuestionController extends AbstractController {
     private QnaService qnaService = QnaService.getInstance();
 
     @Override
     public ModelAndView execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         if (!UserSessionUtils.isLogined(req.getSession())) {
-            return jsonView().addObject("result", Result.fail("Login is required"));
+            return jspView("redirect:/users/loginForm");
         }
 
         long questionId = Long.parseLong(req.getParameter("questionId"));
         try {
             qnaService.deleteQuestion(questionId, UserSessionUtils.getUserFromSession(req.getSession()));
-            return jsonView().addObject("result", Result.ok());
+            return jspView("redirect:/");
         } catch (CannotDeleteException e) {
-            return jsonView().addObject("result", Result.fail(e.getMessage()));
+            return jspView("show.jsp").addObject("question", qnaService.findById(questionId))
+                    .addObject("answers", qnaService.findAllByQuestionId(questionId))
+                    .addObject("errorMessage", e.getMessage());
         }
     }
 }

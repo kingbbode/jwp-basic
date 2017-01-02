@@ -1,31 +1,17 @@
 package core.mvc;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import core.nmvc.HandlerMapping;
+import next.legacy.controller.HomeController;
+import next.legacy.controller.qna.*;
+import next.legacy.controller.user.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import next.controller.HomeController;
-import next.controller.qna.AddAnswerController;
-import next.controller.qna.ApiDeleteQuestionController;
-import next.controller.qna.ApiListQuestionController;
-import next.controller.qna.CreateFormQuestionController;
-import next.controller.qna.CreateQuestionController;
-import next.controller.qna.DeleteAnswerController;
-import next.controller.qna.DeleteQuestionController;
-import next.controller.qna.ShowQuestionController;
-import next.controller.qna.UpdateFormQuestionController;
-import next.controller.qna.UpdateQuestionController;
-import next.controller.user.CreateUserController;
-import next.controller.user.ListUserController;
-import next.controller.user.LoginController;
-import next.controller.user.LogoutController;
-import next.controller.user.ProfileController;
-import next.controller.user.UpdateFormUserController;
-import next.controller.user.UpdateUserController;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
-public class RequestMapping {
+public class LegacyHandlerMapping implements HandlerMapping{
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
     private Map<String, Controller> mappings = new HashMap<>();
 
@@ -60,5 +46,15 @@ public class RequestMapping {
 
     void put(String url, Controller controller) {
         mappings.put(url, controller);
+    }
+
+    @Override
+    public void initialize() {
+        initMapping();
+    }
+
+    @Override
+    public Object getHandler(HttpServletRequest request) {
+        return findController(request.getRequestURI());
     }
 }

@@ -1,13 +1,13 @@
-package next.controller.user;
-
-import core.mvc.AbstractController;
-import core.mvc.ModelAndView;
-import next.controller.UserSessionUtils;
-import next.dao.UserDao;
-import next.model.User;
+package next.legacy.controller.user;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import next.legacy.controller.UserSessionUtils;
+import next.dao.UserDao;
+import next.model.User;
+import core.mvc.AbstractController;
+import core.mvc.ModelAndView;
 
 public class UpdateFormUserController extends AbstractController {
     private UserDao userDao = UserDao.getInstance();

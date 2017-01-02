@@ -1,11 +1,11 @@
-package next.controller.qna;
-
-import core.mvc.AbstractController;
-import core.mvc.ModelAndView;
-import next.controller.UserSessionUtils;
+package next.legacy.controller.qna;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import core.mvc.AbstractController;
+import core.mvc.ModelAndView;
+import next.legacy.controller.UserSessionUtils;
 
 public class CreateFormQuestionController extends AbstractController {
 

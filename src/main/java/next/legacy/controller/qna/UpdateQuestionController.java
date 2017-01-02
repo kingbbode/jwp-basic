@@ -1,13 +1,13 @@
-package next.controller.qna;
-
-import core.mvc.AbstractController;
-import core.mvc.ModelAndView;
-import next.controller.UserSessionUtils;
-import next.dao.QuestionDao;
-import next.model.Question;
+package next.legacy.controller.qna;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import next.legacy.controller.UserSessionUtils;
+import next.dao.QuestionDao;
+import next.model.Question;
+import core.mvc.AbstractController;
+import core.mvc.ModelAndView;
 
 public class UpdateQuestionController extends AbstractController {
     private QuestionDao questionDao = QuestionDao.getInstance();
